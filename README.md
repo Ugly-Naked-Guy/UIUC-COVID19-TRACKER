@@ -133,5 +133,5 @@ Notes: We follow the tutorial here https://www.youtube.com/watch?v=CHwxXGPnw48
 ## Reference:
 The theme of website is referenced from https://github.com/parwiz123/flask-crud-application-with-mysql
 
-The script logistics regression borrows some idea from https://zhuanlan.zhihu.com/p/41132059
+The script of logistics regression borrows some idea from https://zhuanlan.zhihu.com/p/41132059
 
