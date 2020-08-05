@@ -1,0 +1,41 @@
+{% include "header.html" %}
+
+<link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
+
+{% block body %}
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Navigation</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li ><a href="{{url_for('Index')}}">Home</a></li>
+        <li><a href="{{url_for('plot')}}" >Dashboard statistics</a></li>
+        <li class="active"><a href="#">Prediction</a></li>
+        <li><a href="{{url_for('hotspot')}}">Hotspot places</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  
+  <h3>Your probability of infection is {{prob}}</h3>
+  <div class="progress">
+    <div class={{"progress-bar progress-bar-"+color_class}} role="progressbar" aria-valuenow="70"
+    aria-valuemin="0" aria-valuemax="100" style={{"width:"+prob}}>
+      Probability {{prob}} {{risk_level}}
+    </div>
+
+  </div>
+    <h3>The risk level is: {{risk_level}}</h3>
+    <h1></h1>
+    <h1></h1>
+    <h1></h1>
+    <!-- <h5>Click Here to reach out for help</h5>
+   -->
+{% endblock %}
+
+
+<script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+
+<script type="text/javascript" src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>

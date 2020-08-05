@@ -1,0 +1,46 @@
+{% include "header.html" %}
+
+<link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
+
+{% block body %}
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Navigation</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li ><a href="{{url_for('Index')}}">Home</a></li>
+        <li class="active"><a href="{{url_for('plot')}}" >Dashboard statistics</a></li>
+        <li><a href="{{url_for('predict_admin')}}" >View Reported Cases</a></li>
+        <li><a href="#">Hotspot places</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <h2>Confirmed Cases of Each Department</h2>
+  <img src="/static/books_read.jpg" alt="Trulli" width="500" height="333">
+  
+  <h2>Percentage of Confirmed Cases in Each Department</h2>
+  <img src="/static/pie_char.jpg" alt="Trulli" width="500" height="333">
+  
+  
+  <h2>Confirmed Cases in Each Area (in ZIP CODE)</h2>
+  <img src="/static/bar_address.jpg" alt="Trulli" width="500" height="333">
+  
+  <h2>Student users of Each Department</h2>
+  <img src="/static/books_read.jpg" alt="Trulli" width="500" height="333">
+  
+  <h2>Percentage of Student users in Each Department</h2>
+  <img src="/static/pie_char.jpg" alt="Trulli" width="500" height="333">
+  
+  
+  <h2>Student users in Each Area (in ZIP CODE)</h2>
+  <img src="/static/bar_address.jpg" alt="Trulli" width="500" height="333">
+{% endblock %}
+
+
+<script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+
+<script type="text/javascript" src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
+

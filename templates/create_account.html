@@ -1,0 +1,63 @@
+{% include "header.html" %}
+
+<link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
+
+{% block body %}
+<br><br>
+
+
+  <!-- <p style="text-align:center;"><img src="/static/AI_clinician.jpg" alt="Trulli" width="250" height="140"></p>
+  <h4 style="text-align:center;">Powered by AI Diagnosis Engine</h4><br><br> -->
+  <form action="{{ url_for('verify_create_account') }}" method="POST">
+
+    <!-- <form> -->
+    <!-- <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+    <!-- </div> -->
+    <h2 style="text-align:center;">Enter your information in below</h2><br><br>
+    <div class="form-group"  >
+      <label for="exampleInputPassword1">Username</label><br>
+      <input type="text" class="form-control"  id="username" name = "username" placeholder="Enter your username">
+    </div>
+    <div class="form-group" > 
+        <label for="exampleInputPassword1">Password</label><br>
+        <input type="text" class= "form-control"  id="password" name = "password" placeholder="Enter your password">
+      </div>
+      <div class="form-group"> 
+        <label for="exampleInputPassword1">Gender</label><br>
+        <input type="text" class= "form-control"  id="gender" name = "gender" placeholder="Enter your gender">
+      </div>
+      <div class="form-group" > 
+        <label for="exampleInputPassword1">Address</label><br>
+        <input type="text" class= "form-control"  id="address" name = "address" placeholder="Enter your address">
+      </div>
+      <div class="form-group" > 
+        <label for="exampleInputPassword1">Department</label><br>
+        <input type="text" class= "form-control"  id="department" name = "department" placeholder="Enter your department">
+      </div>
+
+
+
+      <h1></h1>
+
+
+      <div class="text-center">
+    <button type="submit" class="btn btn-primary" style="text-align:center;">Create Account</button>
+    <a href="{{url_for('login')}}" class="btn btn-primary" style="text-align:center;">Cancel</a>
+      </div>
+  </form>
+
+  <!-- <div id="formFooter">
+    <a class="underlineHover" href="#">New to this system? Click here to create account</a>
+
+  </div> -->
+
+  
+{% endblock %}
+
+
+<script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+
+<script type="text/javascript" src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>

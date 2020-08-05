@@ -1,0 +1,168 @@
+{% include "header.html" %}
+
+<link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
+
+{% block body %}
+
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Navigation</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li ><a href="{{url_for('Index')}}">Home</a></li>
+        <li><a href="{{url_for('plot')}}" >Dashboard statistics</a></li>
+        <li class="active"><a href="#">Report & Predict</a></li>
+        <li><a href="{{url_for('hotspot')}}">Hotspot places</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <p style="text-align:center;"><img src="/static/AI_clinician.jpg" alt="Trulli" width="250" height="140"></p>
+  <h4 style="text-align:center;">Powered by AI Diagnosis Engine</h4>
+  <form action="{{ url_for('predict_result') }}" method="POST">
+    <!-- <form> -->
+    <!-- <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+    <!-- </div> -->
+    <h2>Enter your information below</h2>
+
+                    {%with messages = get_flashed_messages()%}
+                    {%if messages%}
+                    {% for message in messages %}
+
+                    <div class="alert alert-success alert-dismissable" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label ="close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>{{message}}
+                    </div>
+<!--                    {{message}}-->
+                    {%endfor%}
+                    {%endif%}
+                    {%endwith%}
+      <div class="form-group">
+        <label for="exampleInputPassword1">Report Date</label>
+        <input type="text" class="form-control" id="timerange" name = "timerange" placeholder="Enter the date following Y/M/D: YYYYMMDD">
+      </div>
+      <div class="form-group">
+      <label for="exampleInputPassword1">Age</label>
+      <input type="text" class="form-control" id="Age" name = "Age" placeholder="Enter your Age">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Temperaure</label>
+        <input type="text" class="form-control" id="Temperaure" name = "Temperaure" placeholder="Enter your temperature">
+      </div>
+{#    <div class="form-group">#}
+{#        <label for="exampleInputPassword1">Visited place</label>#}
+{#        <input type="text" class="form-control" id="place" name = "place" placeholder="Enter the place visited">#}
+{#      </div>#}
+
+      <h1></h1>
+      <div class="form-group">
+        <label for="place" class="">Visited place</label>
+        <select name="place" class="form-control">
+          <!-- <option>Select your gender</option> -->
+
+          <option>Grainger Library</option>
+          <option>Illini Union</option>
+            <option>ECE building</option>
+            <option>Illini Hall</option>
+            <option>BookStore</option>
+            <option>Altgeld Hall</option>
+        </select>
+        </div>
+      <h1></h1>
+
+
+      <h1></h1>
+      <div class="form-group">
+        <label for="TestResult" class="">Test Result</label>
+        <select name="TestResult" class="form-control">
+          <!-- <option>Select your gender</option> -->
+
+          <option>Positive</option>
+          <option>Negative</option>
+            <option>Unknown</option>
+        </select>
+        </div>
+      <h1></h1>
+
+{#      <div class="form-group">#}
+{#        <label for="Gender" class="">Gender</label>#}
+{#        <select name="Gender" class="form-control">#}
+{#          <!-- <option>Select your gender</option> -->#}
+{#          #}
+{#          <option>Female</option>#}
+{#          <option>Male</option>#}
+{#        </select>#}
+{#        </div>#}
+{#      <h1></h1>#}
+{#      <!-- <h5><b>Race</b></h5> -->#}
+{#    <div class="form-group">#}
+{#    <label for="Race" class="">Race</label>#}
+{#    <select name="Race" class="form-control">#}
+{#      <!-- <option>Select your race</option> -->#}
+{#      <option>White</option>#}
+{#      <option>African American</option>#}
+{#      <option>Hispanic or Latino</option>#}
+{#      <option>Asian</option>#}
+{#      <option>Others</option>#}
+{#    </select>#}
+{#    </div>#}
+
+    <h1></h1>
+    <h5><b>Select the symptoms your have</b></h5>
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="if_Cough" name = "if_Cough" value = "Cough">
+        <label class="form-check-label" for="exampleCheck1">Cough</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="if_headache" name = "if_headache" value = "Headache">
+        <label class="form-check-label" for="exampleCheck1">Headache</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="if_SOB" name = "if_SOB" value="Shortness of Breath">
+        <label class="form-check-label" for="exampleCheck1">Shortness of Breath</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="if_Diarrhea" name = "if_Diarrhea" value="Diarrhea">
+        <label class="form-check-label" for="exampleCheck1">Diarrhea</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="if_Fatigue" name = "if_Fatigue" value="Fatigue">
+        <label class="form-check-label" for="exampleCheck1">Fatigue</label>
+      </div>
+
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="if_Chills" name = "if_Chills" value="Chills">
+        <label class="form-check-label" for="exampleCheck1">Chills</label>
+      </div>
+
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="if_conjunctivitis" name = "if_conjunctivitis" value="conjunctivitis">
+        <label class="form-check-label" for="exampleCheck1">conjunctivitis</label>
+      </div>
+
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="if_ST" name = "if_ST" value="Sore Throat">
+        <label class="form-check-label" for="exampleCheck1">Sore Throat</label>
+      </div>
+
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="if_CP" name = "if_CP" value="Chest Pain">
+        <label class="form-check-label" for="exampleCheck1">Chest Pain</label>
+      </div>
+
+
+
+    <button type="submit" class="btn btn-primary">Report and Predict</button>
+  </form>
+{% endblock %}
+
+
+<script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+
+<script type="text/javascript" src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
