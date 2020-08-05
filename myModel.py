@@ -8,9 +8,9 @@ def sigmoid(z):
     return a
 
 
-def initialize_with_zeros(X):
-    w = np.zeros((X.shape[1], 1))
-    b = 0
+def initialize_with_zeros(X): # X is the model matrix
+    w = np.zeros((X.shape[1], 1)) # dimision: p*1
+    b = 0 # dimision: 1
     return w, b
 
 
@@ -23,50 +23,50 @@ def propagate(w, b, X, y):
     y -- true lables，dimision: p*1
 
     return:
-    cost, dw, db, last two are put into the same dictionary grads
+    loss, dw, db, last two are put into the same dictionary gradients
     """
-    # m = the number of columns in data matrix X
-    m = X.shape[1]
+    # p = the number of columns in data matrix X
+    p = X.shape[1]
 
     # forward propagatiion:
     A = sigmoid(np.dot(X, w)+b)  # using sigmoid function
-    cost = -(np.sum(y*np.log(A)+(1-y)*np.log(1-A)))/m
+    loss = -(np.sum(y*np.log(A)+(1-y)*np.log(1-A)))/p # the loss function of logistic regression
 
     # backward propagatiion：
     dZ = A-y
-    dw = ((np.dot(dZ.T, X))/m).reshape(-1, 1)
-    db = (np.sum(dZ))/m
+    dw = ((np.dot(dZ.T, X))/p).reshape(-1, 1)
+    db = (np.sum(dZ))/p
 
     # retun：
-    grads = {"dw": dw,
-             "db": db}
+    gradients = {"dw": dw,
+                 "db": db}
 
-    return grads, cost
+    return gradients, loss
 
 
 def optimize(w, b, X, y, num_iterations, learning_rate):
-    # list to put cost after each iteration：
-    costs = []
+    # list to put loss after each iteration：
+    loss_list = []
     # iteration：
     for i in range(num_iterations):
-        # calulate cost and gradients after each iteration：
-        grads, cost = propagate(w, b, X, y)
-        dw = grads["dw"]
-        db = grads["db"]
+        # calulate loss and gradients after each iteration：
+        gradients, loss = propagate(w, b, X, y)
+        dw = gradients["dw"]
+        db = gradients["db"]
 
         # update parameters w and b using the gradients:
         w = w - learning_rate*dw
         b = b - learning_rate*db
 
-        # save the cost after per 100 iterations
+        # save the loss after per 100 iterations
         if i % 100 == 0:
-            costs.append(cost)
+            loss_list.append(loss)
 
     params = {"w": w,
               "b": b}
-    grads = {"dw": dw,
+    gradients = {"dw": dw,
              "db": db}
-    return params, grads, costs
+    return params, gradients, loss_list
 
 
 def Logistic_Regression(X, y, learning_rate=0.00001, num_iterations=1000):
@@ -74,7 +74,7 @@ def Logistic_Regression(X, y, learning_rate=0.00001, num_iterations=1000):
     w, b = initialize_with_zeros(X)
 
     # gradient decent-calculate w and b through iterations
-    params, grads, costs = optimize(w, b, X, y, num_iterations, learning_rate)
+    params, gradients, loss_list = optimize(w, b, X, y, num_iterations, learning_rate)
     W = params['w']
     b = params['b']
 #     proba = sigmoid(np.dot(new_record,W)+b)[0]
