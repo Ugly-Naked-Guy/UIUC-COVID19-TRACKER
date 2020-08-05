@@ -19,7 +19,7 @@ app.secret_key = 'many random bytes'
 
 app.config['MYSQL_HOST'] = '127.0.0.1'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '951205'
+app.config['MYSQL_PASSWORD'] = '4115548'
 app.config['MYSQL_DB'] = 'crud'
 
 
@@ -395,7 +395,7 @@ def predict_result():
         abspath = os.path.dirname(os.path.abspath(__file__))
         input_file = open(abspath + '/static/df_training_weights.csv')
         df_training_weights = pd.read_csv(input_file)
-        X = df_training_weights.drop(['userID', 'reportDate', 'Positive', 'Unnamed: 0', 'Unnamed: 0.1'], axis=1)
+        X = df_training_weights.drop(['userID', 'reportDate', 'Positive', 'Unnamed: 0'], axis=1)
         y = df_training_weights['Positive'].values.reshape(-1, 1)
         optimal_pars = Logistic_Regression(X, y)
         optimal_w, optimal_b = optimal_pars['w'], optimal_pars['b']
